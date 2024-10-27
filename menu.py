@@ -78,10 +78,12 @@ while place_order:
         # Add 1 to the menu item number
         i += 1
 
+    # Test print statements for debugging
     #print(menu_items)
     #print(f"Menu is a: {type(menu)}")
     #print(f"Menu Items is a: {type(menu_items)}")
     #print(f"Order List is a: {type(order_list)}")
+
     # Get the customer's input
     menu_category = input("Type menu number: ")
 
@@ -121,20 +123,26 @@ while place_order:
                         "Price": value
                     }
                     i += 1
+            
+            # Test print statements for debugging
             #print(menu_items)
             #print(type(menu_items))
+
             # 2. Ask customer to input menu item number
             menu_selection = input("Please enter your selection: ")
-            #print(menu_selection)
+            
             # 3. Check if the customer typed a number
             if menu_selection.isdigit():
                 # Convert the menu selection to an integer
                 menu_selection = int(menu_selection)
+
                 # 4. Check if the menu selection is in the menu items
                 if menu_selection in menu_items.keys():
                     # Store the item name as a variable
                     item_name = menu_items[menu_selection]["Item name"]
                     item_price = menu_items[menu_selection]["Price"]
+                    
+                    # Test print statements for debugging
                     #print(item_name)
                     #print(item_price)
 
@@ -147,7 +155,6 @@ while place_order:
                     else:
                         print("Invalid number entered, quantity will default to 1.")
                         quantity = 1
-                    #print(f"Quantity = {quantity}")
 
                     # Add the item name, price, and quantity to the order list
                     order_list.append({
@@ -155,6 +162,8 @@ while place_order:
                         "Price": item_price,
                         "Quantity": quantity
                     })
+                    
+                    # Test print statements for debugging
                     #print(order_list)
 
                 else:
@@ -186,7 +195,7 @@ while place_order:
                 place_order = False
                 # Since the customer decided to stop ordering, thank them for
                 # their order
-                print("Thank you for your order.")
+                print("\nThank you for your order.")
                 # Exit the keep ordering question loop
                 break
             case _:
@@ -198,50 +207,45 @@ while place_order:
 print("This is what we are preparing for you.\n")
 
 # Uncomment the following line to check the structure of the order
-#print(order)
+#print(type(order_list))
+#print(order_list)
 
 print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
 
-#print(type(order_list))
-# 6. Loop through the items in the customer's order
-for i in range(len(order_list)):
-    for key, value in order_list[i].items():
-        print(key)
-        print(value)
-        i += 1
-                # Check if the menu item is a dictionary to handle differently
-                # if type(value) is dict:
-                #     for key2, value2 in value.items():
-                #         num_item_spaces = 24 - len(key + key2) - 3
-                #         item_spaces = " " * num_item_spaces
-                #         print(f"{i}      | {key} - {key2}{item_spaces} | ${value2}")
-                #         menu_items[i] = {
-                #             "Item name": key + " - " + key2,
-                #             "Price": value2
-                #         }
-                #         i += 1
-                # else:
-                #     num_item_spaces = 24 - len(key)
-                #     item_spaces = " " * num_item_spaces
-                #     print(f"{i}      | {key}{item_spaces} | ${value}")
-                #     menu_items[i] = {
-                #         "Item name": key,
-                #         "Price": value
-                #     }
-                #     i += 1
-    # 7. Store the dictionary items as variables
 
+# 6. Loop through the items in the customer's order
+for item in order_list:
+    
+    # Test print statements for debugging
+    #print(type(item))
+    #print(item)
+
+    # 7. Store the dictionary items as variables
+    item_name = item["Item name"]
+    price = item["Price"]
+    quantity = item["Quantity"]
+    
+    # Test print statements for debugging
+    #print(item_name)
+    #print(price)
+    #print(quantity)
 
     # 8. Calculate the number of spaces for formatted printing
-
+    num_item_spaces = 24 - len(item_name)
+    num_price_spaces = 5 - len(str(price))
 
     # 9. Create space strings
-
-
+    item_spaces = " " * num_item_spaces
+    price_spaces = " " * num_price_spaces
+    
     # 10. Print the item name, price, and quantity
+    print(f"{item_name}{item_spaces}  | ${price}{price_spaces} | {quantity}")
 
 
 # 11. Calculate the cost of the order using list comprehension
 # Multiply the price by quantity for each item in the order list, then sum()
 # and print the prices.
+
+total_cost = sum([item["Quantity"] * item["Price"] for item in order_list])
+print(f"\nYour total price for this order is ${total_cost:,.2f}\n")
