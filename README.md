@@ -1,5 +1,5 @@
 # python-challenge-1
-## Module 2 Challenge
+## AI Module 2 Challenge
 
 This progam is a design of an interactive ordering system from a food truck menu.
 
@@ -9,5 +9,5 @@ The program displays various menu options and prices. The user will select the i
 
 Note: No outside code or AI was used in writing this code. The assignment contained a starter code that we used to build on to complete this project. 
 
-- Mark Murphy  mmurphy2k@gmail.com
+Mark Murphy  mmurphy2k@gmail.com
 
